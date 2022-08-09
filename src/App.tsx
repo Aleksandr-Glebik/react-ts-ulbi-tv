@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Card, {CardVariant} from './components/Card'
+import List from './components/List'
+import UserItem from './components/UserItem'
 import UserList from './components/UserList'
 import { IUser } from './types/types'
 
@@ -19,7 +21,6 @@ function App() {
       setUsers(response.data)
     } catch (error) {
       console.log('error', error);
-
     }
   }
 
@@ -31,7 +32,7 @@ function App() {
         <button>Кнопка</button>
         <div>Important text</div>
       </Card>
-      <UserList users={users}/>
+      <List items={users} renderItem={(user: IUser) => <UserItem user={user} key={user.id}/>} />
     </div>
   )
 }
